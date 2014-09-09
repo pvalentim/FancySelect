@@ -48,6 +48,11 @@ $.fn.fancySelect = (opts = {}) ->
       triggerHtml = settings.triggerTemplate(sel.find(':selected'))
       trigger.html(triggerHtml)
 
+    updateScrollPosition = (selected) ->
+      options.find('.selected').removeClass('selected')
+      selectedLi = options.find( ':contains(' + sel.find(':selected').text() + ')' ).addClass('selected hover')
+      options.scrollTop options.scrollTop() + selectedLi.position().top - 12
+
     sel.on 'blur.fs', ->
       if trigger.hasClass 'open'
         setTimeout ->
@@ -99,6 +104,7 @@ $.fn.fancySelect = (opts = {}) ->
         e.stopPropagation()
       else
         updateTriggerText()
+        updateScrollPosition()
 
     # keyboard control
     sel.on 'keydown', (e) ->
