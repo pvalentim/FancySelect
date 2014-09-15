@@ -59,8 +59,10 @@
       updateScrollPosition = function(selected) {
         var selectedLi;
         options.find('.selected').removeClass('selected');
-        selectedLi = options.find(':contains(' + sel.find(':selected').text() + ')').addClass('selected hover');
-        return options.scrollTop(options.scrollTop() + selectedLi.position().top - 12);
+        if (options.length > 0) {
+          selectedLi = options.find(':contains(' + sel.find(':selected').text() + ')').addClass('selected hover');
+          return options.scrollTop(options.scrollTop() + selectedLi.position().top - 12);
+        }
       };
       sel.on('blur.fs', function() {
         if (trigger.hasClass('open')) {
