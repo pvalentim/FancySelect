@@ -50,7 +50,7 @@ $.fn.fancySelect = (opts = {}) ->
 
     updateScrollPosition = (selected) ->
       options.find('.selected').removeClass('selected')
-      if options.length > 0
+      if options.length > 0 && !isiOS
         selectedLi = options.find( ':contains(' + sel.find(':selected').text() + ')' ).addClass('selected hover')
         options.scrollTop options.scrollTop() + selectedLi.position().top - 12
 
